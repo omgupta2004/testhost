@@ -68,7 +68,7 @@ class ComicGenerator:
             
             # Configure Gemini
             import google.generativeai as genai
-            genai.configure(api_key="AIzaSyBBS6Nh_b2BTciQ2XWdnAKj1xdc8X1HBYA")
+            genai.configure(api_key=os.environ.get('GEMINI_API_KEY', ''))
             
             # Upload file
             myfile = genai.upload_file(temp_audio_path)
