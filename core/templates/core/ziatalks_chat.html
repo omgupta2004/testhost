@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header bg-primary text-white">
+        <h3 class="mb-0">:) ZiaTalks</h3>
+    </div>
+    <div class="card-body" style="height: 400px; overflow-y: auto;" id="chat-box">
+        {% if chat_history %}
+        {% for message in chat_history %}
+        <div class="mb-3 {% if message.role == 'user' %}text-end{% endif %}">
+            <span class="badge {% if message.role == 'user' %}bg-primary{% else %}bg-secondary{% endif %} p-2"
+                style="font-size: 1rem; white-space: pre-wrap; text-align: left;">{{ message.text }}</span>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="text-center text-muted mt-5">
+            <h5>Hi! I'm ready to answer questions about your video.</h5>
+            <p>Type your question below to get started!</p>
+        </div>
+        {% endif %}
+    </div>
+    <div class="card-footer">
+        <form method="post">
+            {% csrf_token %}
+            <div class="input-group">
+                <input type="text" class="form-control" name="message" placeholder="Ask a question about the video..."
+                    required autofocus>
+                <button class="btn btn-primary" type="submit">Send</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Auto-scroll to bottom
+    var chatBox = document.getElementById("chat-box");
+    chatBox.scrollTop = chatBox.scrollHeight;
+</script>
+{% endblock %}

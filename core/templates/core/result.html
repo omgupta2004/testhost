@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="text-center mb-4">
+    <h1>Your Comic Strip</h1>
+    <a href="{% url 'upload_video' %}" class="btn btn-outline-secondary mt-2">Create Another</a>
+</div>
+
+<div class="row">
+    {% for panel in panels %}
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <img src="{{ panel.image_file.url }}" class="card-img-top" alt="Panel {{ panel.panel_number }}">
+            <div class="card-body">
+                <p class="card-text text-center text-muted">Panel {{ panel.panel_number|add:"1" }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card p-5">
+    <h1 class="text-center mb-4">Comic Generator</h1>
+    <p class="text-center text-muted mb-4">Upload a video to turn it into a comic strip!</p>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form.video_file }}
+        </div>
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-lg">Generate Comic</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
