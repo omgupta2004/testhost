@@ -28,10 +28,16 @@ DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
-# Render automatically sets RENDER_EXTERNAL_HOSTNAME — add it to ALLOWED_HOSTS
+# Render — auto-add the external hostname if set
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
+# Fallback: allow all onrender.com subdomains and the specific app domain
+ALLOWED_HOSTS += [
+    'educomic.onrender.com',
+    '.onrender.com',
+]
 
 
 # Application definition
