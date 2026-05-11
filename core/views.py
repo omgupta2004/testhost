@@ -7,8 +7,8 @@ from django.conf import settings
 from youtube_transcript_api import YouTubeTranscriptApi
 import google.generativeai as genai
 
-# Configure Gemini (ensure key is set)
-genai.configure(api_key="AIzaSyBBS6Nh_b2BTciQ2XWdnAKj1xdc8X1HBYA")
+# Configure Gemini via environment variable
+genai.configure(api_key=os.environ.get('GEMINI_API_KEY', ''))
 
 def ziatalks_setup(request):
     if request.method == 'POST':

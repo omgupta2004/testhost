@@ -13,3 +13,5 @@ python-dotenv
 requests
 asgiref
 sqlparse
+youtube-transcript-api
+yt-dlp
